@@ -1,0 +1,290 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.85rem;
+  color: oklch(0.55 0 0);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: oklch(0.65 0.2 25);
+}
+
+.header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.flyerSection {
+  flex-shrink: 0;
+}
+
+.flyerPlaceholder {
+  width: 240px;
+  height: 320px;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, oklch(0.2 0.02 25), oklch(0.14 0.005 285));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  border: 1px solid oklch(0.25 0.005 285);
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.badgeConcert {
+  background-color: oklch(0.55 0.15 25 / 20%);
+  color: oklch(0.7 0.18 25);
+}
+
+.badgeFestival {
+  background-color: oklch(0.65 0.18 45 / 20%);
+  color: oklch(0.75 0.18 45);
+}
+
+.badgeExpo {
+  background-color: oklch(0.5 0.12 280 / 20%);
+  color: oklch(0.7 0.12 280);
+}
+
+.badgeScreening {
+  background-color: oklch(0.5 0.1 200 / 20%);
+  color: oklch(0.7 0.1 200);
+}
+
+.badgeMeetup {
+  background-color: oklch(0.5 0.1 150 / 20%);
+  color: oklch(0.7 0.1 150);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: oklch(0.95 0 0);
+  line-height: 1.15;
+}
+
+.dateLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: oklch(0.75 0 0);
+}
+
+.dateHighlight {
+  color: oklch(0.65 0.2 25);
+  font-weight: 600;
+}
+
+.venueLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: oklch(0.65 0 0);
+}
+
+.locationLine {
+  font-size: 0.85rem;
+  color: oklch(0.5 0 0);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ticketButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, oklch(0.55 0.2 25), oklch(0.5 0.22 20));
+  color: oklch(0.98 0 0);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.ticketButton:hover {
+  opacity: 0.9;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background-color: oklch(0.22 0.005 285);
+  border: 1px solid oklch(0.3 0.005 285);
+  color: oklch(0.8 0 0);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.shareButton:hover {
+  border-color: oklch(0.4 0.005 285);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: oklch(0.5 0 0);
+  border-bottom: 1px solid oklch(0.25 0.005 285);
+  padding-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: oklch(0.75 0 0);
+}
+
+.infoCard {
+  background-color: oklch(0.16 0.005 285);
+  border: 1px solid oklch(0.25 0.005 285);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.infoRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  text-align: center;
+}
+
+.infoLabel {
+  color: oklch(0.5 0 0);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.infoValue {
+  color: oklch(0.85 0 0);
+}
+
+.notFound {
+  text-align: center;
+  padding: 6rem 1.5rem;
+}
+
+.notFoundTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: oklch(0.95 0 0);
+  margin-bottom: 0.75rem;
+}
+
+.notFoundText {
+  color: oklch(0.55 0 0);
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .flyerPlaceholder {
+    width: 200px;
+    height: 260px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+  }
+
+  .headerInfo {
+    align-items: center;
+  }
+}

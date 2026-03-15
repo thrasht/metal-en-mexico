@@ -1,0 +1,91 @@
+.card {
+  background-color: oklch(0.16 0.005 285);
+  border: 1px solid oklch(0.25 0.005 285);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: oklch(0.5 0 0);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.label {
+  font-size: 0.7rem;
+  color: oklch(0.45 0 0);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 0.875rem;
+  color: oklch(0.85 0 0);
+}
+
+.priceValue {
+  font-size: 0.95rem;
+  color: oklch(0.7 0.15 150);
+  font-weight: 600;
+}
+
+.link {
+  font-size: 0.85rem;
+  color: oklch(0.6 0.12 200);
+  text-decoration: none;
+  transition: color 0.2s;
+  word-break: break-all;
+}
+
+.link:hover {
+  color: oklch(0.7 0.15 200);
+}
+
+.divider {
+  height: 1px;
+  background-color: oklch(0.22 0.005 285);
+}
+
+.shareSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shareBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.375rem;
+  background-color: oklch(0.22 0.005 285);
+  border: 1px solid oklch(0.28 0.005 285);
+  color: oklch(0.7 0 0);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+.shareBtn:hover {
+  border-color: oklch(0.4 0.005 285);
+  background-color: oklch(0.25 0.005 285);
+}
