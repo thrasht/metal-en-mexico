@@ -136,6 +136,7 @@ describe("Dependencias en package.json", () => {
     "@supabase/supabase-js",
     "@supabase/ssr",
     "@prisma/client",
+    "@prisma/adapter-pg",
     "prisma",
     "@fullcalendar/react",
     "@fullcalendar/daygrid",

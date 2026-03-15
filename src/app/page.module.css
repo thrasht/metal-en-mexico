@@ -1,0 +1,52 @@
+.hero {
+  text-align: center;
+  padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: oklch(0.95 0 0);
+}
+
+.heroAccent {
+  background: linear-gradient(135deg, oklch(0.65 0.2 25), oklch(0.7 0.18 45));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: oklch(0.55 0 0);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.toolbar {
+  margin-bottom: 1.5rem;
+}
+
+.content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+}

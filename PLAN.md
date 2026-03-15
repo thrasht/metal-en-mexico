@@ -48,7 +48,7 @@ graph TB
 
 ```mermaid
 erDiagram
-  users {
+  profiles {
     uuid id PK
     text email
     text name
@@ -56,38 +56,55 @@ erDiagram
     timestamp created_at
   }
 
+  bands {
+    uuid id PK
+    text name UK
+    text slug UK
+    text genre
+    text origin
+    text image_url
+    timestamp created_at
+  }
+
   events {
     uuid id PK
     text title
-    text slug
+    text slug UK
     text description
+    text event_type "concert | festival | expo | screening | meetup"
     text venue_name
     text venue_address
     text city
     text state
     float latitude
     float longitude
-    timestamp event_date
-    text event_time
+    timestamp start_date
+    timestamp end_date "nullable - solo multi-dia"
     text flyer_url
     text ticket_url
     text ticket_price_info
-    text setlist_fm_url
     text status "pending | approved | rejected"
     uuid submitted_by FK
     timestamp created_at
     timestamp updated_at
   }
 
-  event_bands {
+  shows {
     uuid id PK
     uuid event_id FK
-    text band_name
+    uuid band_id FK
     boolean is_headliner
+    text stage
+    timestamp show_date
+    text start_time
+    text end_time
+    text setlist_fm_url
+    int sort_order
   }
 
-  events ||--o{ event_bands : tiene
-  users ||--o{ events : envía
+  profiles ||--o{ events : envia
+  events ||--o{ shows : tiene
+  bands ||--o{ shows : participa
 ```
 
 ## Fases del Proyecto

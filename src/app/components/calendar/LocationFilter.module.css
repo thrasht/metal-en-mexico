@@ -1,0 +1,51 @@
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: oklch(0.55 0 0);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.select {
+  appearance: none;
+  background-color: oklch(0.18 0.005 285);
+  border: 1px solid oklch(0.28 0.005 285);
+  border-radius: 0.375rem;
+  color: oklch(0.9 0 0);
+  font-size: 0.85rem;
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+}
+
+.select:hover {
+  border-color: oklch(0.4 0.005 285);
+}
+
+.select:focus {
+  outline: none;
+  border-color: oklch(0.55 0.15 25);
+  box-shadow: 0 0 0 2px oklch(0.55 0.15 25 / 20%);
+}
+
+.eventCount {
+  font-size: 0.8rem;
+  color: oklch(0.5 0 0);
+  margin-left: 0.5rem;
+}
