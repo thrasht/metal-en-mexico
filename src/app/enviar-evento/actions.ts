@@ -93,7 +93,9 @@ export async function submitEvent(
         .from("event-flyers")
         .upload(path, flyerFile, { upsert: true });
 
-      if (!uploadError) {
+      if (uploadError) {
+        console.error("Error al subir flyer:", uploadError.message);
+      } else {
         const { data: publicUrl } = supabase.storage
           .from("event-flyers")
           .getPublicUrl(path);
@@ -121,6 +123,7 @@ export async function submitEvent(
           submittedBy: user.id,
         },
       });
+      console.log(`[Evento creado] id=${event.id} slug=${slug} flyerUrl=${flyerUrl}`);
 
       for (let idx = 0; idx < data.shows.length; idx++) {
         const show = data.shows[idx];
@@ -134,8 +137,9 @@ export async function submitEvent(
             slug: bandSlug,
           },
         });
+        console.log(`[Banda] id=${band.id} name="${band.name}" slug=${bandSlug}`);
 
-        await tx.show.create({
+        const createdShow = await tx.show.create({
           data: {
             eventId: event.id,
             bandId: band.id,
@@ -148,6 +152,7 @@ export async function submitEvent(
             sortOrder: idx,
           },
         });
+        console.log(`[Show creado] id=${createdShow.id} banda="${band.name}" headliner=${show.isHeadliner} stage=${show.stage ?? "—"}`);
       }
 
       return event;

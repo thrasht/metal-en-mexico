@@ -47,6 +47,15 @@ export function FlyerUpload() {
     <div className={styles.flyerSection}>
       <label className={styles.label}>Flyer del evento</label>
 
+      <input
+        ref={inputRef}
+        name="flyer"
+        type="file"
+        accept=".jpg,.jpeg,.png,.webp"
+        onChange={handleChange}
+        className={styles.flyerInput}
+      />
+
       {preview ? (
         <div className={styles.flyerPreview}>
           <Image
@@ -62,7 +71,13 @@ export function FlyerUpload() {
           </button>
         </div>
       ) : (
-        <label className={styles.flyerDropzone}>
+        <div
+          className={styles.flyerDropzone}
+          onClick={() => inputRef.current?.click()}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter") inputRef.current?.click(); }}
+        >
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="17 8 12 3 7 8" />
@@ -70,15 +85,7 @@ export function FlyerUpload() {
           </svg>
           <span>Click para subir o arrastra una imagen</span>
           <span className={styles.flyerHint}>JPG, PNG o WebP — máx {MAX_SIZE_MB}MB</span>
-          <input
-            ref={inputRef}
-            name="flyer"
-            type="file"
-            accept=".jpg,.jpeg,.png,.webp"
-            onChange={handleChange}
-            className={styles.flyerInput}
-          />
-        </label>
+        </div>
       )}
 
       {error && <span className={styles.fieldError}>{error}</span>}

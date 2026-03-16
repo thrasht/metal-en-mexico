@@ -281,6 +281,7 @@ public/
 ## Deuda Técnica
 
 - **Auth: navegación post-login sin recarga completa** — Actualmente el login/registro usan `window.location.href` para forzar una recarga completa y que el Navbar detecte la sesión. Mejorar para usar navegación SPA (sin recarga) mediante un contexto de React compartido entre el Navbar y las páginas de auth, o usando `router.refresh()` combinado con un callback que fuerce al Navbar a re-consultar la sesión vía `supabase.auth.getUser()`.
+- **Storage: upload de flyers falla por RLS** — El bucket `event-flyers` existe en Supabase Storage pero las policies de Row Level Security no permiten el upload. Hay que configurar las policies correctamente en el dashboard de Supabase (INSERT para `authenticated`, SELECT para `anon`). Alternativamente, considerar usar la `service_role` key en el Server Action para bypasear RLS, o crear las policies vía migración SQL con `supabase.storage.policies`.
 
 ## Tareas del MVP
 

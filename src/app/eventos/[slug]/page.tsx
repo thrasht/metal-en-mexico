@@ -86,9 +86,45 @@ export default async function EventDetailPage({ params }: PageProps) {
   }
 
   const isFestival = event.eventType === "festival";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://metalmx.com";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    name: event.title,
+    description: event.description ?? `${event.title} en ${event.venueName}, ${event.city}`,
+    startDate: event.startDate,
+    ...(event.endDate ? { endDate: event.endDate } : {}),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: event.venueName,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: event.city,
+        addressRegion: getStateName(event.state as StateCode),
+        addressCountry: "MX",
+        ...(event.venueAddress ? { streetAddress: event.venueAddress } : {}),
+      },
+    },
+    ...(event.flyerUrl ? { image: event.flyerUrl } : {}),
+    ...(event.ticketUrl
+      ? { offers: { "@type": "Offer", url: event.ticketUrl, ...(event.ticketPriceInfo ? { price: event.ticketPriceInfo } : {}) } }
+      : {}),
+    performer: event.shows
+      .filter((s) => s.isHeadliner)
+      .map((s) => ({ "@type": "MusicGroup", name: s.band.name })),
+    url: `${baseUrl}/eventos/${event.slug}`,
+  };
 
   return (
     <div className={styles.container}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Link href="/" className={styles.backLink}>
         ← Volver al calendario
       </Link>
