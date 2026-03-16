@@ -1,0 +1,345 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: oklch(0.95 0 0);
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: oklch(0.55 0 0);
+  margin-top: 0.375rem;
+}
+
+/* Form layout */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: oklch(0.7 0 0);
+}
+
+.input,
+.select,
+.textarea {
+  background-color: oklch(0.12 0.005 285);
+  border: 1px solid oklch(0.28 0.005 285);
+  border-radius: 0.375rem;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  color: oklch(0.95 0 0);
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: oklch(0.4 0 0);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: oklch(0.55 0.15 25);
+  box-shadow: 0 0 0 2px oklch(0.55 0.15 25 / 20%);
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.inputError {
+  border-color: oklch(0.6 0.2 25);
+}
+
+.fieldError {
+  font-size: 0.75rem;
+  color: oklch(0.65 0.2 25);
+}
+
+/* Sections */
+.section {
+  background-color: oklch(0.16 0.005 285);
+  border: 1px solid oklch(0.25 0.005 285);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: oklch(0.85 0 0);
+}
+
+/* Shows */
+.showsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.showCard {
+  background-color: oklch(0.14 0.005 285);
+  border: 1px solid oklch(0.22 0.005 285);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.showCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.showNumber {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: oklch(0.65 0.2 25);
+}
+
+.showGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .showGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  padding-top: 1.25rem;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: oklch(0.8 0 0);
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  accent-color: oklch(0.65 0.2 25);
+}
+
+.addShowButton {
+  width: 100%;
+  padding: 0.6rem;
+  background: transparent;
+  border: 1px dashed oklch(0.35 0.005 285);
+  border-radius: 0.5rem;
+  color: oklch(0.6 0 0);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.addShowButton:hover {
+  border-color: oklch(0.55 0.15 25);
+  color: oklch(0.75 0.15 25);
+}
+
+.removeButton {
+  background: transparent;
+  border: none;
+  color: oklch(0.55 0.15 25);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.removeButton:hover {
+  background-color: oklch(0.55 0.15 25 / 15%);
+}
+
+/* Flyer upload */
+.flyerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flyerDropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  border: 2px dashed oklch(0.3 0.005 285);
+  border-radius: 0.75rem;
+  color: oklch(0.5 0 0);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  text-align: center;
+}
+
+.flyerDropzone:hover {
+  border-color: oklch(0.55 0.15 25);
+  color: oklch(0.7 0 0);
+}
+
+.flyerHint {
+  font-size: 0.75rem;
+  color: oklch(0.4 0 0);
+}
+
+.flyerInput {
+  display: none;
+}
+
+.flyerPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.flyerImage {
+  border-radius: 0.5rem;
+  border: 1px solid oklch(0.25 0.005 285);
+  max-height: 400px;
+  width: auto;
+}
+
+/* Submit */
+.submitButton {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, oklch(0.55 0.2 25), oklch(0.5 0.22 20));
+  color: oklch(0.98 0 0);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submitButton:hover {
+  opacity: 0.9;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Messages */
+.error {
+  background-color: oklch(0.55 0.15 25 / 10%);
+  border: 1px solid oklch(0.55 0.15 25 / 30%);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: oklch(0.7 0.18 25);
+  text-align: center;
+}
+
+.success {
+  background-color: oklch(0.5 0.12 150 / 10%);
+  border: 1px solid oklch(0.5 0.12 150 / 30%);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.successTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: oklch(0.75 0.12 150);
+  margin-bottom: 0.5rem;
+}
+
+.successText {
+  font-size: 0.9rem;
+  color: oklch(0.65 0 0);
+  margin-bottom: 1.25rem;
+}
+
+.successLink {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: oklch(0.55 0.2 25);
+  color: oklch(0.98 0 0);
+  border-radius: 0.375rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.successLink:hover {
+  opacity: 0.9;
+}
