@@ -278,6 +278,10 @@ public/
 - Las imágenes de flyers se optimizarán automáticamente con Next.js Image
 - El calendario será responsive y funcional en móvil
 
+## Deuda Técnica
+
+- **Auth: navegación post-login sin recarga completa** — Actualmente el login/registro usan `window.location.href` para forzar una recarga completa y que el Navbar detecte la sesión. Mejorar para usar navegación SPA (sin recarga) mediante un contexto de React compartido entre el Navbar y las páginas de auth, o usando `router.refresh()` combinado con un callback que fuerce al Navbar a re-consultar la sesión vía `supabase.auth.getUser()`.
+
 ## Tareas del MVP
 
 - [ ] Inicializar Next.js + TypeScript + Tailwind + shadcn/ui + Prisma + Supabase
