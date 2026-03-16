@@ -1,4 +1,4 @@
-import type { MockShow } from "@/lib/data/mock-events";
+import type { ShowData } from "@/lib/types/event";
 import styles from "./Lineup.module.css";
 
 function formatShowDate(dateStr: string): string {
@@ -15,11 +15,11 @@ interface ShowsByDay {
   label: string;
   stages: {
     stage: string;
-    shows: MockShow[];
+    shows: ShowData[];
   }[];
 }
 
-function organizeShows(shows: MockShow[], isFestival: boolean): ShowsByDay[] {
+function organizeShows(shows: ShowData[], isFestival: boolean): ShowsByDay[] {
   if (!isFestival) {
     const sorted = [...shows].sort((a, b) => {
       if (!a.startTime || !b.startTime) return 0;
@@ -34,7 +34,7 @@ function organizeShows(shows: MockShow[], isFestival: boolean): ShowsByDay[] {
     ];
   }
 
-  const dayMap = new Map<string, Map<string, MockShow[]>>();
+  const dayMap = new Map<string, Map<string, ShowData[]>>();
 
   for (const show of shows) {
     const day = show.showDate ?? "";
@@ -69,7 +69,7 @@ function organizeShows(shows: MockShow[], isFestival: boolean): ShowsByDay[] {
 }
 
 interface LineupProps {
-  shows: MockShow[];
+  shows: ShowData[];
   isFestival: boolean;
 }
 

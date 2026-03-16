@@ -1,21 +1,45 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CalendarView } from "./components/calendar/CalendarView";
 import { DayEventList } from "./components/calendar/DayEventList";
 import { LocationFilter } from "./components/calendar/LocationFilter";
-import { MOCK_EVENTS, getEventsByState } from "@/lib/data/mock-events";
 import { DEFAULT_STATE } from "@/lib/data/mexico-states";
+import type { EventWithShows } from "@/lib/types/event";
 import styles from "./page.module.css";
 
 export default function Home() {
   const [selectedState, setSelectedState] = useState<string>(DEFAULT_STATE);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [events, setEvents] = useState<EventWithShows[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredEvents = useMemo(
-    () => getEventsByState(selectedState),
+  const fetchEvents = useCallback(
+    async (start?: string, end?: string) => {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (selectedState !== "ALL") params.set("state", selectedState);
+        if (start) params.set("start", start);
+        if (end) params.set("end", end);
+
+        const res = await fetch(`/api/events?${params}`);
+        if (res.ok) {
+          const data = await res.json();
+          setEvents(data);
+        }
+      } catch (err) {
+        console.error("Error fetching events:", err);
+      } finally {
+        setLoading(false);
+      }
+    },
     [selectedState]
   );
+
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   function handleStateChange(state: string) {
     setSelectedState(state);
@@ -26,8 +50,8 @@ export default function Home() {
     setSelectedDate(dateStr);
   }
 
-  function handleMonthChange() {
-    // When connected to API, fetch events for the new date range here
+  function handleMonthChange(start: string, end: string) {
+    fetchEvents(start, end);
   }
 
   return (
@@ -47,19 +71,25 @@ export default function Home() {
           <LocationFilter
             selectedState={selectedState}
             onStateChange={handleStateChange}
-            eventCount={filteredEvents.length}
+            eventCount={events.length}
           />
         </div>
 
         <div className={styles.content}>
           <CalendarView
-            events={filteredEvents}
+            events={events}
             selectedDate={selectedDate}
             onDateClick={handleDateClick}
             onMonthChange={handleMonthChange}
           />
-          <DayEventList events={filteredEvents} selectedDate={selectedDate} />
+          <DayEventList events={events} selectedDate={selectedDate} />
         </div>
+
+        {loading && events.length === 0 && (
+          <p style={{ textAlign: "center", color: "oklch(0.5 0 0)", padding: "2rem" }}>
+            Cargando eventos...
+          </p>
+        )}
       </div>
     </>
   );

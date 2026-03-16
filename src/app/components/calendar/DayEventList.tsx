@@ -1,4 +1,4 @@
-import type { MockEvent } from "@/lib/data/mock-events";
+import type { EventWithShows } from "@/lib/types/event";
 import { EventCard } from "@/components/shared/EventCard/EventCard";
 import styles from "./DayEventList.module.css";
 
@@ -11,7 +11,7 @@ function formatDate(dateStr: string): string {
   });
 }
 
-function getEventsForDate(events: MockEvent[], dateStr: string): MockEvent[] {
+function getEventsForDate(events: EventWithShows[], dateStr: string): EventWithShows[] {
   return events.filter((e) => {
     const start = e.startDate;
     const end = e.endDate ?? e.startDate;
@@ -20,7 +20,7 @@ function getEventsForDate(events: MockEvent[], dateStr: string): MockEvent[] {
 }
 
 interface DayEventListProps {
-  events: MockEvent[];
+  events: EventWithShows[];
   selectedDate: string | null;
 }
 

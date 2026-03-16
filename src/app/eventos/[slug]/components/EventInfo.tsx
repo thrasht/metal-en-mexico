@@ -1,6 +1,6 @@
 "use client";
 
-import type { MockEvent } from "@/lib/data/mock-events";
+import type { EventWithShows } from "@/lib/types/event";
 import { getStateName } from "@/lib/data/mexico-states";
 import type { StateCode } from "@/lib/data/mexico-states";
 import styles from "./EventInfo.module.css";
@@ -16,7 +16,7 @@ function formatFullDate(dateStr: string): string {
 }
 
 interface EventInfoProps {
-  event: MockEvent;
+  event: EventWithShows;
 }
 
 export function EventInfo({ event }: EventInfoProps) {

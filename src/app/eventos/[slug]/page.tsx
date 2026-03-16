@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getEventBySlug, MOCK_EVENTS } from "@/lib/data/mock-events";
+import { getEventBySlug } from "@/lib/data/events";
 import { getStateName } from "@/lib/data/mexico-states";
 import type { StateCode } from "@/lib/data/mexico-states";
 import { Lineup } from "./components/Lineup";
@@ -40,7 +41,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const event = getEventBySlug(slug);
+  const event = await getEventBySlug(slug);
 
   if (!event) {
     return { title: "Evento no encontrado" };
@@ -63,6 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
       locale: "es_MX",
       siteName: "Metal MX",
+      ...(event.flyerUrl ? { images: [{ url: event.flyerUrl }] } : {}),
     },
     keywords: [
       "metal",
@@ -75,13 +77,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export async function generateStaticParams() {
-  return MOCK_EVENTS.map((event) => ({ slug: event.slug }));
-}
-
 export default async function EventDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const event = getEventBySlug(slug);
+  const event = await getEventBySlug(slug);
 
   if (!event) {
     notFound();
@@ -97,7 +95,19 @@ export default async function EventDetailPage({ params }: PageProps) {
 
       <div className={styles.header}>
         <div className={styles.flyerSection}>
-          <div className={styles.flyerPlaceholder}>🤘</div>
+          {event.flyerUrl ? (
+            <Image
+              src={event.flyerUrl}
+              alt={`Flyer de ${event.title}`}
+              width={400}
+              height={560}
+              className={styles.flyerImage}
+              style={{ objectFit: "contain" }}
+              priority
+            />
+          ) : (
+            <div className={styles.flyerPlaceholder}>🤘</div>
+          )}
         </div>
 
         <div className={styles.headerInfo}>

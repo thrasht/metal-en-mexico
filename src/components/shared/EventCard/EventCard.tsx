@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { MockEvent } from "@/lib/data/mock-events";
+import type { EventWithShows } from "@/lib/types/event";
 import styles from "./EventCard.module.css";
 
 const EVENT_TYPE_LABELS: Record<string, string> = {
@@ -18,13 +18,8 @@ const BADGE_STYLES: Record<string, string> = {
   meetup: styles.badgeMeetup,
 };
 
-function formatTime(time?: string): string {
-  if (!time) return "";
-  return time;
-}
-
 interface EventCardProps {
-  event: MockEvent;
+  event: EventWithShows;
 }
 
 export function EventCard({ event }: EventCardProps) {
@@ -43,7 +38,7 @@ export function EventCard({ event }: EventCardProps) {
 
   const firstShowTime = event.shows
     .map((s) => s.startTime)
-    .filter(Boolean)
+    .filter((t): t is string => Boolean(t))
     .sort()[0];
 
   return (
@@ -66,7 +61,7 @@ export function EventCard({ event }: EventCardProps) {
 
           {firstShowTime && (
             <span className={styles.metaItem}>
-              🕐 {formatTime(firstShowTime)}
+              🕐 {firstShowTime}
             </span>
           )}
         </div>

@@ -6,7 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import type { EventInput, DatesSetArg } from "@fullcalendar/core";
 import type { DateClickArg } from "@fullcalendar/interaction";
-import type { MockEvent } from "@/lib/data/mock-events";
+import type { EventWithShows } from "@/lib/types/event";
 import styles from "./CalendarView.module.css";
 
 const EVENT_TYPE_COLORS: Record<string, string> = {
@@ -17,7 +17,7 @@ const EVENT_TYPE_COLORS: Record<string, string> = {
   meetup: "oklch(0.5 0.1 150)",
 };
 
-function toCalendarEvents(events: MockEvent[]): EventInput[] {
+function toCalendarEvents(events: EventWithShows[]): EventInput[] {
   return events.map((e) => ({
     id: e.id,
     title: e.title,
@@ -38,7 +38,7 @@ function toCalendarEvents(events: MockEvent[]): EventInput[] {
 }
 
 interface CalendarViewProps {
-  events: MockEvent[];
+  events: EventWithShows[];
   selectedDate: string | null;
   onDateClick: (dateStr: string) => void;
   onMonthChange: (start: string, end: string) => void;
