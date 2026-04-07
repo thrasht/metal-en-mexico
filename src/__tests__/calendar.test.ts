@@ -184,6 +184,7 @@ describe("Componentes del calendario", () => {
     expect(content).toContain("DEFAULT_STATE");
     expect(content).toContain("selectedState");
     expect(content).toContain("selectedDate");
+    expect(content).toContain("fetchApprovedEvents");
   });
 
   it("Página principal tiene CSS Module", () => {

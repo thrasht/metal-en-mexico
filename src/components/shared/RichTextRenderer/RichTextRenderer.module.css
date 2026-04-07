@@ -1,0 +1,77 @@
+.content {
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.content :global(.tiptap-readonly) {
+  outline: none;
+}
+
+.content :global(.tiptap-readonly) p {
+  margin: 0.5em 0;
+}
+
+.content :global(.tiptap-readonly) h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1em 0 0.5em;
+  color: var(--metal-orange);
+}
+
+.content :global(.tiptap-readonly) h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.75em 0 0.4em;
+  color: var(--metal-orange);
+}
+
+.content :global(.tiptap-readonly) strong {
+  font-weight: 700;
+}
+
+.content :global(.tiptap-readonly) em {
+  font-style: italic;
+}
+
+.content :global(.tiptap-readonly) ul,
+.content :global(.tiptap-readonly) ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.content :global(.tiptap-readonly) ul {
+  list-style-type: disc;
+}
+
+.content :global(.tiptap-readonly) ol {
+  list-style-type: decimal;
+}
+
+.content :global(.tiptap-readonly) li {
+  margin: 0.25em 0;
+}
+
+.content :global(.tiptap-readonly) blockquote {
+  border-left: 3px solid var(--primary);
+  margin: 0.75em 0;
+  padding: 0.5em 1em;
+  background: var(--metal-darker);
+  border-radius: 0 4px 4px 0;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.content :global(.tiptap-readonly) hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
+.content :global(.tiptap-readonly) code {
+  background: var(--metal-darker);
+  border-radius: 3px;
+  padding: 0.15em 0.3em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}

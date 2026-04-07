@@ -5,6 +5,7 @@ import { CalendarView } from "./components/calendar/CalendarView";
 import { DayEventList } from "./components/calendar/DayEventList";
 import { LocationFilter } from "./components/calendar/LocationFilter";
 import { DEFAULT_STATE } from "@/lib/data/mexico-states";
+import { fetchApprovedEvents } from "@/app/actions";
 import type { EventWithShows } from "@/lib/types/event";
 import styles from "./page.module.css";
 
@@ -18,16 +19,12 @@ export default function Home() {
     async (start?: string, end?: string) => {
       setLoading(true);
       try {
-        const params = new URLSearchParams();
-        if (selectedState !== "ALL") params.set("state", selectedState);
-        if (start) params.set("start", start);
-        if (end) params.set("end", end);
-
-        const res = await fetch(`/api/events?${params}`);
-        if (res.ok) {
-          const data = await res.json();
-          setEvents(data);
-        }
+        const data = await fetchApprovedEvents({
+          state: selectedState !== "ALL" ? selectedState : undefined,
+          startDate: start,
+          endDate: end,
+        });
+        setEvents(data);
       } catch (err) {
         console.error("Error fetching events:", err);
       } finally {

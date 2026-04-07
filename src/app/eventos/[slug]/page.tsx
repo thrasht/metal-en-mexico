@@ -7,6 +7,7 @@ import { getStateName } from "@/lib/data/mexico-states";
 import type { StateCode } from "@/lib/data/mexico-states";
 import { Lineup } from "./components/Lineup";
 import { EventInfo } from "./components/EventInfo";
+import ReviewsSection from "./components/ReviewsSection";
 import styles from "./page.module.css";
 
 const EVENT_TYPE_LABELS: Record<string, string> = {
@@ -210,6 +211,8 @@ export default async function EventDetailPage({ params }: PageProps) {
               <Lineup shows={event.shows} isFestival={isFestival} />
             </div>
           )}
+
+          <ReviewsSection eventSlug={event.slug} />
         </div>
 
         <aside className={styles.sidebar}>

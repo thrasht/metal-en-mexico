@@ -7,6 +7,7 @@ import styles from "./layout.module.css";
 const adminNav = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/eventos", label: "Eventos" },
+  { href: "/admin/resenas", label: "Reseñas" },
 ];
 
 export default async function AdminLayout({

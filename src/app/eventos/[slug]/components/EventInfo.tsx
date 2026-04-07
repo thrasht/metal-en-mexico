@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import type { EventWithShows } from "@/lib/types/event";
 import { getStateName } from "@/lib/data/mexico-states";
 import type { StateCode } from "@/lib/data/mexico-states";
@@ -20,11 +21,13 @@ interface EventInfoProps {
 }
 
 export function EventInfo({ event }: EventInfoProps) {
-  const shareUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : `https://metalmx.com/eventos/${event.slug}`;
+  const fallbackUrl = `https://metalmx.com/eventos/${event.slug}`;
+  const [shareUrl, setShareUrl] = useState(fallbackUrl);
   const shareText = `${event.title} - ${formatFullDate(event.startDate)}`;
+
+  useEffect(() => {
+    setShareUrl(window.location.href);
+  }, []);
 
   function handleCopyLink() {
     navigator.clipboard.writeText(shareUrl);

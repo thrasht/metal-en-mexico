@@ -51,3 +51,29 @@ export async function deleteEvent(eventId: string) {
   revalidatePath("/admin/eventos");
   revalidatePath("/");
 }
+
+export async function pauseReview(reviewId: string) {
+  await requireAdmin();
+  await prisma.review.update({
+    where: { id: reviewId },
+    data: { status: "paused" },
+  });
+  revalidatePath("/admin/resenas");
+}
+
+export async function publishReview(reviewId: string) {
+  await requireAdmin();
+  await prisma.review.update({
+    where: { id: reviewId },
+    data: { status: "published" },
+  });
+  revalidatePath("/admin/resenas");
+}
+
+export async function deleteReview(reviewId: string) {
+  await requireAdmin();
+  await prisma.review.delete({
+    where: { id: reviewId },
+  });
+  revalidatePath("/admin/resenas");
+}
