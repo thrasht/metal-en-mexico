@@ -357,7 +357,11 @@ async function main() {
   const allEventData = [...pastEvents, ...futureEvents, ...otherCityEvents, ...pendingEvents];
 
   for (const e of allEventData) {
-    const { bandIndices, ...eventData } = e;
+    const { bandIndices, ...eventData } = e as typeof e & {
+      ticketUrl?: string;
+      endDate?: Date;
+      venueAddress?: string;
+    };
     const event = await prisma.event.create({
       data: {
         title: eventData.title,
@@ -369,7 +373,7 @@ async function main() {
         city: eventData.city,
         state: eventData.state,
         startDate: eventData.startDate,
-        endDate: "endDate" in eventData ? (eventData as { endDate: Date }).endDate : null,
+        endDate: eventData.endDate ?? null,
         ticketUrl: eventData.ticketUrl ?? null,
         ticketPriceInfo: eventData.ticketPriceInfo ?? null,
         status: eventData.status,
