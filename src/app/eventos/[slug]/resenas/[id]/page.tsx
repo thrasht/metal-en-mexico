@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getReviewById } from "@/lib/data/reviews";
 import { getEventBySlug } from "@/lib/data/events";
+import ReviewContent from "./components/ReviewContent";
 import type { JSONContent } from "@tiptap/react";
 import styles from "./page.module.css";
-
-const RichTextRenderer = dynamic(
-  () => import("@/components/shared/RichTextRenderer/RichTextRenderer"),
-  { ssr: false }
-);
 
 interface PageProps {
   params: Promise<{ slug: string; id: string }>;
@@ -83,7 +78,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       </div>
 
       <div className={styles.body}>
-        <RichTextRenderer content={review.content as JSONContent} />
+        <ReviewContent content={review.content as JSONContent} />
       </div>
 
       {review.photos.length > 0 && (
