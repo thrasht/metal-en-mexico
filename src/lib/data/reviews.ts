@@ -77,6 +77,24 @@ export async function getReviewByEventAndAuthor(
   return serializeReview(review as Parameters<typeof serializeReview>[0]);
 }
 
+export async function getLatestReviews(limit = 5): Promise<(ReviewData & { eventTitle: string; eventSlug: string })[]> {
+  const reviews = await prisma.review.findMany({
+    where: { status: "published" },
+    include: {
+      ...REVIEW_INCLUDE,
+      event: { select: { title: true, slug: true } },
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+  });
+
+  return reviews.map((r) => ({
+    ...serializeReview(r as Parameters<typeof serializeReview>[0]),
+    eventTitle: r.event.title,
+    eventSlug: r.event.slug,
+  }));
+}
+
 export async function getAllReviews(filters?: {
   status?: string;
 }): Promise<(ReviewData & { eventTitle: string; eventSlug: string })[]> {

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { CalendarView } from "./components/calendar/CalendarView";
 import { DayEventList } from "./components/calendar/DayEventList";
 import { LocationFilter } from "./components/calendar/LocationFilter";
+import LatestReviews from "./components/home/LatestReviews";
 import { DEFAULT_STATE } from "@/lib/data/mexico-states";
 import { fetchApprovedEvents } from "@/app/actions";
 import type { EventWithShows } from "@/lib/types/event";
@@ -87,6 +88,8 @@ export default function Home() {
             Cargando eventos...
           </p>
         )}
+
+        <LatestReviews />
       </div>
     </>
   );
