@@ -4,7 +4,13 @@ import { config } from "dotenv";
 
 config({ path: ".env.local" });
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const url = process.env.DATABASE_URL!;
+const isRemote = url.includes("supabase.com");
+const connectionString = isRemote && !url.includes("sslmode=")
+  ? `${url}${url.includes("?") ? "&" : "?"}sslmode=require`
+  : url;
+
+const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 const BANDS = [
